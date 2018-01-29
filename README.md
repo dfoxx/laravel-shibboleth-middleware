@@ -1,2 +1,17 @@
 # laravel-shibboleth-middleware
-Simple middleware solution to Shibboleth authentication
+Simple middleware solution to Shibboleth authentication that works in Laravel 5.5.
+
+### Installation
+* Copy file to app\Http\Middlware.
+* Add `'shibboleth' => \App\Http\Middleware\Shibboleth::class,` to `$routeMiddleware` in app\Http\Kernel.php.
+
+### Use
+To apply middleware to a group of routes:
+```php
+// Public routes can go here
+
+Route::group(['middleware' => 'shibboleth'], function() {
+     // Protected routes can go in here
+});
+```
+
