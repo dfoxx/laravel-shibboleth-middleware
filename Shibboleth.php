@@ -20,7 +20,7 @@ class Shibboleth
     {
         if (!auth()->check()) {
             // If on local environment use .env value to mock server variable
-            if (app()->environment() == 'local') $unity_id = env('APP_USER');
+            if (app()->environment() == 'local') $unity_id = config('app.user');
             // Read the server variables
             $identifiers = preg_grep('/^(.+)?SHIB_UID$/', array_keys($request->server()));
             if (count($identifiers)) $unity_id = $identifiers[0];
