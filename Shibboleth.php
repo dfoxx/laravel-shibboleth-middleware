@@ -22,8 +22,8 @@ class Shibboleth
             // If on local environment use .env value to mock server variable
             if (app()->environment() == 'local') $unity_id = config('app.user');
             // Read the server variables
-            $identifiers = preg_grep('/^(.+)?SHIB_UID$/', array_keys($request->server()));
-            if (count($identifiers)) $unity_id = $identifiers[0];
+            $shibboleth_uid_keys = array_values(preg_grep('/^(.+)?SHIB_UID$/', array_keys($request->server())));
+            if (count($shibboleth_uid_keys)) $unity_id = $request->server($shibboleth_uid_keys[0]);
             // Redirect if no APP_USER or server variable
             if (!isset($unity_id)) return redirect('/login');
             $user = User::whereUnityId($unity_id)->first();
