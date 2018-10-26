@@ -1,5 +1,5 @@
 # laravel-shibboleth-middleware
-Simple middleware solution to Shibboleth authentication that works in Laravel 5.5.
+Simple middleware solution to Shibboleth authentication that works in Laravel 5.7.
 
 ### Installation
 * Copy file to app\Http\Middlware.
