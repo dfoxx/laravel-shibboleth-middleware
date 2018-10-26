@@ -7,6 +7,14 @@ Simple middleware solution to Shibboleth authentication that works in Laravel 5.
 * Add `'user' => env('APP_USER', null),` to config/app.php
 * Add `APP_USER=blah` to .env file
 * Run `php artisan config:cache`
+* Update `\App\Http\Controllers\Auth\LoginController` using `LoginController.php`
+* Add routes to `routes/web.php`:
+```
+Route::get('login', 'Auth\LoginController@login')->name('login');
+Route::get('shibboleth', 'Auth\LoginController@shibboleth')->name('shibboleth');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+```
+
 
 ### Use
 To apply middleware to a group of routes:
