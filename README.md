@@ -18,3 +18,11 @@ Route::group(['middleware' => 'shibboleth'], function() {
 });
 ```
 
+Add the following to the top of `public/.htaccess`:
+```
+<IfModule mod_shib>
+    AuthType shibboleth
+    ShibRequestSetting requireSession false
+    require shibboleth
+</IfModule>
+```
