@@ -14,7 +14,14 @@ Route::get('login', 'Auth\LoginController@login')->name('login');
 Route::get('shibboleth', 'Auth\LoginController@shibboleth')->name('shibboleth');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 ```
-
+* Add the following to the top of `public/.htaccess`:
+```
+<IfModule mod_shib>
+    AuthType shibboleth
+    ShibRequestSetting requireSession false
+    require shibboleth
+</IfModule>
+```
 
 ### Use
 To apply middleware to a group of routes:
@@ -24,13 +31,4 @@ To apply middleware to a group of routes:
 Route::group(['middleware' => 'shibboleth'], function() {
      // Protected routes can go in here
 });
-```
-
-Add the following to the top of `public/.htaccess`:
-```
-<IfModule mod_shib>
-    AuthType shibboleth
-    ShibRequestSetting requireSession false
-    require shibboleth
-</IfModule>
 ```
